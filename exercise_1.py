@@ -24,6 +24,7 @@ try:
 except ImportError:
     matplotlib.use("agg")
     import matplotlib.pyplot as plt
+import dwave.inspector
 
 # ------- Set up our graph -------
 
@@ -56,7 +57,7 @@ sampleset = sampler.sample_qubo(Q,
                                num_reads=num_reads,
                                label='Training - Embedding',
                                return_embedding=True)
-
+dwave.inspector.show(sampleset)
 print("\nEmbedding found:\n", sampleset.info['embedding_context']['embedding'])
 
 print("\nSampleset:")

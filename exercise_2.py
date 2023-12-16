@@ -25,6 +25,7 @@ try:
 except ImportError:
     matplotlib.use("agg")
     import matplotlib.pyplot as plt
+import dwave.inspector
 
 # ------- Set up our graph -------
 
@@ -47,7 +48,7 @@ for i, j in G.edges:
 
 # ------- Run our QUBO on the QPU -------
 # Set up QPU parameters
-chain_strength = 0.5
+chain_strength = 3
 num_reads = 10
 
 # Run the QUBO on a solver with the specified topology
@@ -61,6 +62,7 @@ response = sampler.sample_qubo(Q,
                                chain_strength=chain_strength,
                                num_reads=num_reads,
                                label='Training - Embedding')
+dwave.inspector.show(response)
 
 print("\nSampleset:")
 print(response)
